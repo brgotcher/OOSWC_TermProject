@@ -1,5 +1,7 @@
 package view;
 
+import controller.MouseEventListener;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,6 +15,10 @@ public class MyWindow extends JFrame {
         setTitle("Game Engine");
 
         canvas = new MyCanvas();
+
+        MouseEventListener listener = new MouseEventListener();
+        canvas.addMouseListener(listener);
+        canvas.addMouseMotionListener(listener);
 
         var cp = getContentPane();
         cp.add(BorderLayout.CENTER, canvas);
