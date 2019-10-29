@@ -1,5 +1,6 @@
 package view;
 
+import controller.KeyEventListener;
 import controller.MouseEventListener;
 
 import javax.swing.*;
@@ -19,6 +20,10 @@ public class MyWindow extends JFrame {
         MouseEventListener listener = new MouseEventListener();
         canvas.addMouseListener(listener);
         canvas.addMouseMotionListener(listener);
+
+        KeyEventListener keyEventListener = new KeyEventListener();
+        canvas.addKeyListener(keyEventListener);
+        canvas.setFocusable(true);
 
         var cp = getContentPane();
         cp.add(BorderLayout.CENTER, canvas);
