@@ -10,7 +10,7 @@ public class Guard extends GameFigure {
 
     public final int BASE_SIZE = 20;
     public final int BARREL_LEN = 20;
-    public final int UNIT_MOVE = 10;
+    public static final int UNIT_MOVE = 10;
     public Rectangle2D.Float base;
     public Line2D.Float barrel;
 
