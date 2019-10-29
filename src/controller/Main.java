@@ -1,10 +1,8 @@
 package controller;
 
-import model.Bullet;
-import model.GameData;
-import model.Guard;
-import model.MousePointer;
+import model.*;
 import view.MyWindow;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -19,6 +17,8 @@ public class Main {
     public static int INDEX_GUARD = 1;
 
     public static int FPS = 20; //frames per second
+
+    static Random rand = new Random();
 
     public static void main(String[] args) {
 
@@ -40,11 +40,14 @@ public class Main {
         int x = 200;
         int y = (Main.win.getHeight() / 2);
         gameData.fixedObject.add(new Guard(x, y));
+        // place runner in random y location on far right
+        gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
     }
 
     static void gameLoop() {
 
         running = true;
+        int counter = 1;
 
         //game loop
         while (running) {
@@ -63,6 +66,10 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            if (counter % 100 == 0) {
+                gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
+            }
+            counter++;
         }
 
     }

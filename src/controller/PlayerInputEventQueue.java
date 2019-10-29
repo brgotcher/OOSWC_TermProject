@@ -3,6 +3,7 @@ package controller;
 import model.Bullet;
 import model.Guard;
 import model.MousePointer;
+import view.MyWindow;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -34,16 +35,16 @@ public class PlayerInputEventQueue {
                     KeyEvent ke = (KeyEvent) inputEvent.event;
                     switch (ke.getKeyCode()) {
                         case KeyEvent.VK_W:
-                            guard.location.y -= Guard.UNIT_MOVE;
+                            if (guard.location.y > Guard.UNIT_MOVE + Guard.BODY_HEIGHT/2) guard.location.y -= Guard.UNIT_MOVE;
                             break;
                         case KeyEvent.VK_A:
-                            guard.location.x -= Guard.UNIT_MOVE;
+                            if (guard.location.x > Guard.UNIT_MOVE) guard.location.x -= Guard.UNIT_MOVE;
                             break;
                         case KeyEvent.VK_S:
-                            guard.location.y += Guard.UNIT_MOVE;
+                            if (guard.location.y < MyWindow.HEIGHT - (Guard.UNIT_MOVE + Guard.BODY_HEIGHT * 2)) guard.location.y += Guard.UNIT_MOVE;
                             break;
                         case KeyEvent.VK_D:
-                            guard.location.x += Guard.UNIT_MOVE;
+                            if (guard.location.x < MyWindow.WIDTH - (Guard.UNIT_MOVE + Guard.BODY_WIDTH)) guard.location.x += Guard.UNIT_MOVE;
                             break;
                     }
                     break;

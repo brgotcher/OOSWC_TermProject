@@ -9,9 +9,11 @@ import java.awt.*;
 public class MyWindow extends JFrame {
 
     public MyCanvas canvas;
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 600;
 
     public void init() {
-        setSize(1000,600);
+        setSize(WIDTH,HEIGHT);
         setLocation(300, 200);
         setTitle("Game Engine");
 
