@@ -17,5 +17,9 @@ public class MouseEventListener extends MouseAdapter {
     @Override
     public void mouseMoved(MouseEvent e) {
         //System.out.println("mouse moved at " + e.getX() + " " + e.getY());
+        InputEvent inputEvent = new InputEvent();
+        inputEvent.event = e;
+        inputEvent.type = InputEvent.MOUSE_MOVED;
+        Main.playerInputEventQueue.queue.add(inputEvent);
     }
 }

@@ -2,6 +2,7 @@ package controller;
 
 import model.Bullet;
 import model.GameData;
+import model.MousePointer;
 import view.MyWindow;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class Main {
     }
 
     static void initGame() {
+        gameData.fixedObject.add(new MousePointer(0,0));
         gameData.friendObject.add(new Bullet(50, 50));
     }
 
