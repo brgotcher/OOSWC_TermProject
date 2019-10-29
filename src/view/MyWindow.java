@@ -8,7 +8,7 @@ public class MyWindow extends JFrame {
     public MyCanvas canvas;
 
     public void init() {
-        setSize(1400,1000);
+        setSize(1000,600);
         setLocation(300, 200);
         setTitle("Game Engine");
 

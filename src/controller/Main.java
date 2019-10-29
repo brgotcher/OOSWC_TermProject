@@ -41,7 +41,7 @@ public class Main {
             long sleepTime = (long) (1000 / FPS - timeSpent);
 
             try {
-                Thread.sleep(sleepTime);
+                if (sleepTime > 0) Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
