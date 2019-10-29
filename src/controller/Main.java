@@ -2,6 +2,7 @@ package controller;
 
 import model.Bullet;
 import model.GameData;
+import model.Guard;
 import model.MousePointer;
 import view.MyWindow;
 
@@ -13,6 +14,9 @@ public class Main {
     public static GameData gameData;
     public static PlayerInputEventQueue playerInputEventQueue;
     public static boolean running;
+
+    public static int INDEX_MOUSE_POINTER = 0;
+    public static int INDEX_GUARD = 1;
 
     public static int FPS = 20; //frames per second
 
@@ -33,7 +37,9 @@ public class Main {
 
     static void initGame() {
         gameData.fixedObject.add(new MousePointer(0,0));
-        gameData.friendObject.add(new Bullet(50, 50));
+        int x = 200;
+        int y = (Main.win.getHeight() / 2);
+        gameData.fixedObject.add(new Guard(x, y));
     }
 
     static void gameLoop() {
