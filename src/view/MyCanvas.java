@@ -1,5 +1,7 @@
 package view;
 
+import controller.Main;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,8 +33,15 @@ public class MyCanvas extends JPanel {
         g2OffScreen.clearRect(0,0,width, height);
 
         // render all game data here
-        g2OffScreen.setColor(Color.RED);
-        g2OffScreen.drawOval(100,100,50,50);
+        for (var fig: Main.gameData.fixedObject) {
+            fig.render(g2OffScreen);
+        }
+        for (var fig: Main.gameData.friendObject) {
+            fig.render(g2OffScreen);
+        }
+        for (var fig: Main.gameData.enemyObject) {
+            fig.render(g2OffScreen);
+        }
 
         //use active rendering to put the buffer image on screen
         Graphics gOnScreen;

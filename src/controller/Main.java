@@ -1,5 +1,6 @@
 package controller;
 
+import model.Bullet;
 import model.GameData;
 import view.MyWindow;
 
@@ -22,8 +23,13 @@ public class Main {
 
         gameData = new GameData();
 
+        initGame();
         gameLoop();
 
+    }
+
+    static void initGame() {
+        gameData.friendObject.add(new Bullet(50, 50));
     }
 
     static void gameLoop() {
