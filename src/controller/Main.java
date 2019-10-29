@@ -10,6 +10,7 @@ public class Main {
 
     public static MyWindow win;
     public static GameData gameData;
+    public static PlayerInputEventQueue playerInputEventQueue;
     public static boolean running;
 
     public static int FPS = 20; //frames per second
@@ -22,6 +23,7 @@ public class Main {
         win.setVisible(true);
 
         gameData = new GameData();
+        playerInputEventQueue = new PlayerInputEventQueue();
 
         initGame();
         gameLoop();
@@ -39,6 +41,8 @@ public class Main {
         //game loop
         while (running) {
             long startTime = System.currentTimeMillis();
+
+            playerInputEventQueue.processInputEvents();
             gameData.update();
             win.canvas.render();
             long endTime = System.currentTimeMillis();
