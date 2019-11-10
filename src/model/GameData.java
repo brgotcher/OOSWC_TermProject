@@ -23,4 +23,10 @@ public class GameData {
         }
 
     }
+
+    public void clear() {
+        fixedObject.clear();
+        friendObject.clear();
+        enemyObject.clear();
+    }
 }

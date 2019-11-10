@@ -2,6 +2,8 @@ package controller;
 
 import model.*;
 import view.MyWindow;
+
+import java.awt.*;
 import java.util.Random;
 
 import javax.swing.*;
@@ -11,7 +13,7 @@ public class Main {
     public static MyWindow win;
     public static GameData gameData;
     public static PlayerInputEventQueue playerInputEventQueue;
-    public static boolean running;
+    public static boolean running = false;
 
     public static int INDEX_MOUSE_POINTER = 0;
     public static int INDEX_GUARD = 1;
@@ -30,12 +32,30 @@ public class Main {
         gameData = new GameData();
         playerInputEventQueue = new PlayerInputEventQueue();
 
+        startScreen();
+
         initGame();
+
         gameLoop();
 
     }
 
+    static void startScreen() {
+
+        Font font = new Font("Serif", Font.BOLD | Font.ITALIC, 50);
+        gameData.friendObject.add(new Text("Press Start Button", 100, 200, Color.GREEN, font));
+        while (!running) {
+            Main.win.canvas.render();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     static void initGame() {
+        gameData.clear();
         gameData.fixedObject.add(new MousePointer(0,0));
         int x = 200;
         int y = (Main.win.getHeight() / 2);
