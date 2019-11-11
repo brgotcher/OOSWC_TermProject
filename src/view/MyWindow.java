@@ -74,7 +74,7 @@ public class MyWindow extends JFrame {
                 System.out.println("HIGH SCORES");
             } else if (e.getSource() == quitButton) {
                 System.out.println("QUIT");
-                win.dispose();
+                System.exit(0);
             }
         }
     }
