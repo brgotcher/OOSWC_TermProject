@@ -3,12 +3,14 @@ package view;
 import controller.KeyEventListener;
 import controller.Main;
 import controller.MouseEventListener;
+import model.HighScores;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static controller.Main.gameData;
 import static controller.Main.win;
 
 public class MyWindow extends JFrame {
@@ -17,7 +19,7 @@ public class MyWindow extends JFrame {
     public JButton startButton;
     public JButton highScoreButton;
     public JButton quitButton;
-    JPanel buttonPanel;
+    public JPanel buttonPanel;
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 600;
 
@@ -69,11 +71,23 @@ public class MyWindow extends JFrame {
                 buttonPanel.revalidate();
                 buttonPanel.repaint();
                 Main.running = true;
+                Main.run = true;
 
             } else if (e.getSource() == highScoreButton) {
                 System.out.println("HIGH SCORES");
+                buttonPanel.remove(highScoreButton);
+                buttonPanel.revalidate();
+                buttonPanel.repaint();
+                gameData.clear();
+                HighScores.getScores();
+                Font font = new Font("serif", Font.BOLD | Font.ITALIC, 50);
+                gameData.friendObject.add(new HighScores(HighScores.scores, 300, 50, Color.GREEN, font));
+                win.buttonPanel.revalidate();
+                win.buttonPanel.repaint();
+
             } else if (e.getSource() == quitButton) {
                 System.out.println("QUIT");
+                Main.run = true;
                 System.exit(0);
             }
         }

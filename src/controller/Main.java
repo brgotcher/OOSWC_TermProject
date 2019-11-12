@@ -14,6 +14,7 @@ public class Main {
     public static GameData gameData;
     public static PlayerInputEventQueue playerInputEventQueue;
     public static boolean running = false;
+    public static boolean run = false;
 
     public static int INDEX_MOUSE_POINTER = 0;
     public static int INDEX_GUARD = 1;
@@ -53,6 +54,24 @@ public class Main {
             }
         }
     }
+
+//    public static void highScores() {
+//        gameData.clear();
+//        Font font = new Font("serif", Font.BOLD | Font.ITALIC, 50);
+//        HighScores.getScores();
+//        gameData.friendObject.add(new HighScores(HighScores.scores, 300, 50, Color.GREEN, font));
+//        win.buttonPanel.revalidate();
+//        win.buttonPanel.repaint();
+//        while (!run) {
+//            Main.win.canvas.render();
+//            System.out.println("test");
+//            try {
+//                Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     static void initGame() {
         gameData.clear();
