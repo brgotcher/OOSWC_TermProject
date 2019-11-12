@@ -53,6 +53,6 @@ public class Bullet extends GameFigure {
 
     @Override
     public int getCollisionRadius() {
-        return 0;
+        return 5;
     }
 }

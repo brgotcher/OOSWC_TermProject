@@ -53,12 +53,13 @@ public class Runner extends GameFigure {
         if (location.x >= 110) {
             location.x -= 5;
         } else {
+            Base.hp -= 10;
             super.done = true;
         }
     }
 
     @Override
     public int getCollisionRadius() {
-        return 0;
+        return 15;
     }
 }

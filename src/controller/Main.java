@@ -18,8 +18,10 @@ public class Main {
 
     public static int INDEX_MOUSE_POINTER = 0;
     public static int INDEX_GUARD = 1;
+    public static int INDEX_BASE = 2;
 
     public static int FPS = 20; //frames per second
+    public static int counter;
 
     static Random rand = new Random();
 
@@ -79,21 +81,23 @@ public class Main {
         int x = 200;
         int y = (Main.win.getHeight() / 2);
         gameData.fixedObject.add(new Guard(x, y));
+        gameData.fixedObject.add(new Base(0,0));
+        gameData.fixedObject.add(new StatDisplay(0,0));
         // place runner in random y location on far right
         gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
-        gameData.fixedObject.add(new Base(0,0));
     }
 
     static void gameLoop() {
 
         running = true;
-        int counter = 1;
+        counter = 1;
 
         //game loop
         while (running) {
             long startTime = System.currentTimeMillis();
 
             playerInputEventQueue.processInputEvents();
+            processCollisions();
             gameData.update();
             win.canvas.render();
             long endTime = System.currentTimeMillis();
@@ -110,7 +114,28 @@ public class Main {
                 gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
             }
             counter++;
+
+            if (Guard.hp < 1 | Base.hp < 1) running = false;
         }
 
+    }
+
+    static void processCollisions() {
+        var guard = (Guard) Main.gameData.fixedObject.get(Main.INDEX_GUARD);
+        for (var enemy: Main.gameData.enemyObject) {
+            if (guard.collideWith(enemy)) {
+                guard.hp -= 10;
+                enemy.done = true;
+            }
+        }
+
+        for (var friend: Main.gameData.friendObject) {
+            for (var enemy: Main.gameData.enemyObject) {
+                if (friend.collideWith(enemy)) {
+                    friend.done = true;
+                    enemy.done = true;
+                }
+            }
+        }
     }
 }

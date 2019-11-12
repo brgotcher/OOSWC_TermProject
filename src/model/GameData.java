@@ -4,23 +4,33 @@ import java.util.ArrayList;
 
 public class GameData {
 
-    public ArrayList<GameFigure> fixedObject = new ArrayList<>();
+    public static ArrayList<GameFigure> fixedObject = new ArrayList<>();
     public ArrayList<GameFigure> friendObject = new ArrayList<>();
     public ArrayList<GameFigure> enemyObject = new ArrayList<>();
 
     public void update() {
 
+        ArrayList<GameFigure> remove = new ArrayList<>();
+
         for (var fig: fixedObject) {
-            fig.update();
+            if (fig.done) remove.add(fig);
+            else fig.update();
         }
+        fixedObject.removeAll(remove);
 
+        remove.clear();
         for (var fig: friendObject) {
-            fig.update();
+            if (fig.done) remove.add(fig);
+            else fig.update();
         }
+        friendObject.removeAll(remove);
 
+        remove.clear();
         for (var fig: enemyObject) {
-            fig.update();
+            if (fig.done) remove.add(fig);
+            else fig.update();
         }
+        enemyObject.removeAll(remove);
 
     }
 

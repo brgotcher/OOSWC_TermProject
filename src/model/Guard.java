@@ -17,6 +17,7 @@ public class Guard extends GameFigure {
     public Line2D.Float barrel;
     public Line2D.Float leftleg;
     public Line2D.Float rightleg;
+    public static int hp;
 
     public Guard(int x, int y) {
         super(x, y);
@@ -25,6 +26,7 @@ public class Guard extends GameFigure {
         barrel = new Line2D.Float(x, y, x, y - BARREL_LEN);
         leftleg = new Line2D.Float(x-BODY_WIDTH/4, y+BODY_HEIGHT/2, x-BODY_WIDTH/2, y + BODY_HEIGHT);
         rightleg = new Line2D.Float(x+BODY_WIDTH/4, y+BODY_HEIGHT/2, x+BODY_WIDTH/2, y + BODY_HEIGHT);
+        hp = 400;
     }
 
     @Override
@@ -73,6 +75,6 @@ public class Guard extends GameFigure {
 
     @Override
     public int getCollisionRadius() {
-        return 0;
+        return 22;
     }
 }

@@ -10,6 +10,7 @@ public class Base extends GameFigure {
     int l = 25;
     int r = 100;
     public static Line2D.Float top, bottom, left, right;
+    public static int hp;
 
     public Base(int x, int y) {
         super(x,y);
@@ -17,6 +18,7 @@ public class Base extends GameFigure {
         bottom = new Line2D.Float(l, b, r, b);
         left = new Line2D.Float(l, t, l, b);
         right = new Line2D.Float(r, t, r, b);
+        hp = 20;
     }
     @Override
     public void render(Graphics2D g2) {

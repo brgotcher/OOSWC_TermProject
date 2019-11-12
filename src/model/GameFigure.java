@@ -21,6 +21,15 @@ public abstract class GameFigure {
         location.y = y;
     }
 
+    public boolean collideWith(GameFigure f) {
+        double dist = this.location.distance(f.location);
+        if (dist <= this.getCollisionRadius() + f.getCollisionRadius()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public abstract void render(Graphics2D g2);
     public abstract void update();
     public abstract int getCollisionRadius();
