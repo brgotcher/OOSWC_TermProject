@@ -81,6 +81,7 @@ public class Main {
         gameData.fixedObject.add(new Guard(x, y));
         // place runner in random y location on far right
         gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
+        gameData.fixedObject.add(new Base(0,0));
     }
 
     static void gameLoop() {

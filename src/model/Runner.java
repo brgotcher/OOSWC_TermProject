@@ -50,7 +50,7 @@ public class Runner extends GameFigure {
         rightleg.y1 = location.y + BODY_HEIGHT/2;
         rightleg.y2 = location.y + BODY_HEIGHT;
 
-        if (location.x >= 0) {
+        if (location.x >= 110) {
             location.x -= 5;
         } else {
             super.done = true;
