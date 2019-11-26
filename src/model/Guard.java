@@ -26,7 +26,7 @@ public class Guard extends GameFigure {
         barrel = new Line2D.Float(x, y, x, y - BARREL_LEN);
         leftleg = new Line2D.Float(x-BODY_WIDTH/4, y+BODY_HEIGHT/2, x-BODY_WIDTH/2, y + BODY_HEIGHT);
         rightleg = new Line2D.Float(x+BODY_WIDTH/4, y+BODY_HEIGHT/2, x+BODY_WIDTH/2, y + BODY_HEIGHT);
-        hp = 400;
+        hp = 20;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class HighScores extends GameFigure {
     @Override
     public void render(Graphics2D g2) {
         g2.setFont(font);
-        g2.setColor(color);
+        g2.setColor(color.RED);
         for (int i = 0; i < 10; i++) {
             String thisScore = Integer.toString(i+1) + ":  " + Integer.toString(scores[i]);
             g2.drawString(thisScore, (int) (location.x), (int) (location.y + 50*i));

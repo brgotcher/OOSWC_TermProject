@@ -15,10 +15,11 @@ public class Main {
     public static PlayerInputEventQueue playerInputEventQueue;
     public static boolean running = false;
     public static boolean run = false;
+    public static int wave = 1;
 
     public static int INDEX_MOUSE_POINTER = 0;
-    public static int INDEX_GUARD = 1;
-    public static int INDEX_BASE = 2;
+    public static int INDEX_BASE = 1;
+    public static int INDEX_GUARD = 2;
 
     public static int FPS = 20; //frames per second
     public static int counter;
@@ -46,7 +47,7 @@ public class Main {
     static void startScreen() {
 
         Font font = new Font("Serif", Font.BOLD | Font.ITALIC, 50);
-        gameData.friendObject.add(new Text("Press Start Button", 100, 200, Color.GREEN, font));
+        gameData.friendObject.add(new Text("Press Start Button to play", 180, 275, Color.GREEN, font));
         while (!running) {
             Main.win.canvas.render();
             try {
@@ -80,8 +81,8 @@ public class Main {
         gameData.fixedObject.add(new MousePointer(0,0));
         int x = 200;
         int y = (Main.win.getHeight() / 2);
-        gameData.fixedObject.add(new Guard(x, y));
         gameData.fixedObject.add(new Base(0,0));
+        gameData.fixedObject.add(new Guard(x, y));
         gameData.fixedObject.add(new StatDisplay(0,0));
         // place runner in random y location on far right
         gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
@@ -110,12 +111,17 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (counter % 100 == 0) {
+            if (counter % (100 - wave*2) == 0 && counter % (5*(100 - wave*2)) != 0) {
                 gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
+            }
+            else if (counter % (5*(100 - wave * 2)) == 0) {
+                gameData.enemyObject.add(new Cannon(MyWindow.WIDTH - 50, rand.nextInt(MyWindow.HEIGHT - 50)));
             }
             counter++;
 
-            if (Guard.hp < 1 | Base.hp < 1) running = false;
+            if (counter % 2000 == 0) wave++;
+
+            if (Base.hp < 1 | Guard.hp < 1) running = false;
         }
 
     }

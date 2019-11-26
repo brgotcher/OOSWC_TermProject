@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
+import static controller.Main.wave;
+
 public class Runner extends GameFigure {
 
     public final int BODY_HEIGHT = 20;
@@ -51,7 +53,7 @@ public class Runner extends GameFigure {
         rightleg.y2 = location.y + BODY_HEIGHT;
 
         if (location.x >= 110) {
-            location.x -= 5;
+            location.x -= (2 * wave + 3);
         } else {
             Base.hp -= 10;
             super.done = true;
