@@ -10,6 +10,7 @@ public class HighScores extends GameFigure {
     public static int[] scores = new int[10];
     Color color;
     Font font;
+    int temp;
 
     public HighScores(int[] scores, int x, int y, Color color, Font font) {
         super(x,y);
@@ -30,6 +31,25 @@ public class HighScores extends GameFigure {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static void addScore(int newScore) {
+        int oldScore = scores[0];
+        int i = 0;
+        while (newScore < oldScore) {
+            if (i == 9) {
+                newScore = scores[i];
+                break;
+            }
+            oldScore = scores[++i];
+        }
+        for (int j = i; j < 10; j++) {
+            temp = scores[j];
+            scores[j] = newScore;
+            newScore = temp;
+        }
+        
+        
     }
 
 
