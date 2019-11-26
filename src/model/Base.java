@@ -18,7 +18,7 @@ public class Base extends GameFigure {
         bottom = new Line2D.Float(l, b, r, b);
         left = new Line2D.Float(l, t, l, b);
         right = new Line2D.Float(r, t, r, b);
-        hp = 20;
+        hp = 500;
     }
     @Override
     public void render(Graphics2D g2) {
