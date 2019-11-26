@@ -12,12 +12,14 @@ public class Cannon extends GameFigure {
     public final int CANNON = 35;
     public Rectangle2D.Float body;
     public Line2D.Float cannon;
+    public int hp;
+    public Color color = Color.YELLOW;
 
     public Cannon(int x, int y) {
         super(x,y);
         body = new Rectangle2D.Float((float) x-BODY/2, (float) y-BODY/2, (float) BODY, (float) BODY);
         cannon = new Line2D.Float(x, y, x - CANNON, y);
-
+        hp = 2;
     }
 
     public void fire() {
@@ -29,8 +31,8 @@ public class Cannon extends GameFigure {
 
     @Override
     public void render(Graphics2D g2) {
-
-        g2.setColor(Color.YELLOW);
+        if (hp ==1) color = Color.MAGENTA;
+        g2.setColor(color);
         g2.setStroke(new BasicStroke(4));
         g2.draw(body);
         g2.draw(cannon);

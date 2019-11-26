@@ -140,18 +140,32 @@ public class Main {
 
     static void processCollisions() {
         var guard = (Guard) Main.gameData.fixedObject.get(Main.INDEX_GUARD);
-        for (var enemy: Main.gameData.enemyObject) {
-            if (guard.collideWith(enemy)) {
+        for (int e = 0; e < gameData.enemyObject.size(); e++) {
+            GameFigure nme = gameData.enemyObject.get(e);
+            if (guard.collideWith(nme)) {
                 guard.hp -= 10;
-                enemy.done = true;
+                if (nme.getClass() == Cannon.class) {
+                    Cannon cnn = (Cannon) nme;
+                    cnn.hp--;
+                    if (cnn.hp < 1) cnn.done = true;
+                } else {
+                    nme.done = true;
+                }
             }
         }
 
         for (var friend: Main.gameData.friendObject) {
-            for (var enemy: Main.gameData.enemyObject) {
-                if (friend.collideWith(enemy)) {
+            for (int n = 0; n < gameData.enemyObject.size(); n++) {
+                GameFigure nme = gameData.enemyObject.get(n);
+                if (friend.collideWith(nme)) {
                     friend.done = true;
-                    enemy.done = true;
+                    if (nme.getClass() == Cannon.class) {
+                        Cannon cnn = (Cannon) nme;
+                        cnn.hp--;
+                        if (cnn.hp < 1) cnn.done = true;
+                    } else {
+                        nme.done = true;
+                    }
                 }
             }
         }
