@@ -75,6 +75,6 @@ public class Guard extends GameFigure {
 
     @Override
     public int getCollisionRadius() {
-        return 22;
+        return 20;
     }
 }

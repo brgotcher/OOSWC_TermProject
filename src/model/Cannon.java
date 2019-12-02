@@ -1,6 +1,7 @@
 package model;
 
 import controller.Main;
+import model.cannonball.CannonBall;
 
 import java.awt.*;
 import java.awt.geom.Line2D;

@@ -1,6 +1,8 @@
 package controller;
 
 import model.*;
+import model.cannonball.CannonBall;
+import model.cannonball.CannonBallAnimExploding;
 import view.MyWindow;
 
 import java.awt.*;
@@ -143,13 +145,20 @@ public class Main {
         for (int e = 0; e < gameData.enemyObject.size(); e++) {
             GameFigure nme = gameData.enemyObject.get(e);
             if (guard.collideWith(nme)) {
-                guard.hp -= 10;
+
                 if (nme.getClass() == Cannon.class) {
                     Cannon cnn = (Cannon) nme;
                     cnn.hp--;
+                    guard.hp -= 10;
                     if (cnn.hp < 1) cnn.done = true;
+                } else if (nme.getClass() == CannonBall.class) {
+                    CannonBall cb = (CannonBall) nme;
+                    if (cb.state == cb.STATE_SHOOTING) guard.hp -= 10;
+                    cb.state = cb.STATE_EXPLODING;
+                    cb.animStrategy = new CannonBallAnimExploding(cb);
                 } else {
                     nme.done = true;
+                    guard.hp -= 10;
                 }
             }
         }
@@ -163,6 +172,12 @@ public class Main {
                         Cannon cnn = (Cannon) nme;
                         cnn.hp--;
                         if (cnn.hp < 1) cnn.done = true;
+                    } else if (nme.getClass() == CannonBall.class) {
+                        CannonBall cb = (CannonBall) nme;
+                        if (cb.state == cb.STATE_SHOOTING) {
+                            cb.state = cb.STATE_EXPLODING;
+                            cb.animStrategy = new CannonBallAnimExploding(cb);
+                        }
                     } else {
                         nme.done = true;
                     }
