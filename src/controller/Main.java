@@ -3,6 +3,8 @@ package controller;
 import model.*;
 import model.cannonball.CannonBall;
 import model.cannonball.CannonBallAnimExploding;
+import model.runner.Runner;
+import model.runner.RunnerStateRunning;
 import view.MyWindow;
 
 import java.awt.*;
@@ -157,8 +159,13 @@ public class Main {
                     cb.state = cb.STATE_EXPLODING;
                     cb.animStrategy = new CannonBallAnimExploding(cb);
                 } else {
-                    nme.done = true;
-                    guard.hp -= 10;
+                    if (nme.getClass() == Runner.class) {
+                        Runner rnr = (Runner) nme;
+                        if (rnr.state.getClass() == RunnerStateRunning.class) {
+                            rnr.goNextState();
+                            guard.hp -=10;
+                        }
+                    }
                 }
             }
         }
@@ -179,7 +186,12 @@ public class Main {
                             cb.animStrategy = new CannonBallAnimExploding(cb);
                         }
                     } else {
-                        nme.done = true;
+                        if (nme.getClass() == Runner.class) {
+                            Runner rnr = (Runner) nme;
+                            if (rnr.state.getClass() == RunnerStateRunning.class) {
+                                rnr.goNextState();
+                            }
+                        }
                     }
                 }
             }
