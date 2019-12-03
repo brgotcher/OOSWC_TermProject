@@ -12,7 +12,7 @@ import static controller.Main.wave;
 
 public class CannonBall extends GameFigure {
 
-    int size = 8;
+    int size = 10;
     final int MAX_CANNONBALL_SIZE = 25;
     Color color = Color.WHITE;
     public static final int STATE_SHOOTING = 0;

@@ -1,12 +1,15 @@
 package model.runner;
 
+import controller.Main;
 import model.Base;
 import model.GameFigure;
+import model.Guard;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
+import static controller.Main.gameData;
 import static controller.Main.wave;
 
 public class Runner extends GameFigure {
@@ -24,6 +27,7 @@ public class Runner extends GameFigure {
 
     public RunnerState state;
     public RunnerAnimStrategy animStrategy;
+    Guard guard = (Guard) gameData.fixedObject.get(Main.INDEX_GUARD);
 
 
     public Runner(int x, int y) {
@@ -89,18 +93,33 @@ public class Runner extends GameFigure {
     }
 
     public void updateState() {
-        if (state.getClass() == RunnerStateRunning.class && super.location.x <= 110) {
-            Base.hp -= 10;
-            goNextState();
+        if (state.getClass() == RunnerStateRunning.class) {
+            if (super.location.x <= 110) {
+                Base.hp -= 10;
+                goNextState();
+            } else if (this.collideWith(guard)) {
+                guard.hp -= 10;
+                goNextState();
+            } else {
+                for (int n = 0; n < gameData.friendObject.size(); n++) {
+                    GameFigure blt = gameData.friendObject.get(n);
+                    if (this.collideWith(blt)) {
+                        blt.done = true;
+                        goNextState();
+                    }
+                }
+            }
+        } else {
+            if (size > MAX_SIZE || size < MIN_SIZE) {
+                goNextState();
+            }
         }
-        if (size > MAX_SIZE || size < MIN_SIZE) {
-            goNextState();
-        }
+
 
     }
 
     @Override
     public int getCollisionRadius() {
-        return 15;
+        return 13;
     }
 }

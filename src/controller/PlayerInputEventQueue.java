@@ -8,15 +8,23 @@ import view.MyWindow;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 public class PlayerInputEventQueue {
 
+
+
     public LinkedList<InputEvent> queue = new LinkedList<>();
+    InputEvent inputEvent;
 
     public void processInputEvents() {
 
         while (!queue.isEmpty()) {
-            InputEvent inputEvent = queue.removeFirst();
+            try {
+                inputEvent = queue.removeFirst();
+            } catch (NoSuchElementException e) {
+                e.printStackTrace();
+            }
 
             switch (inputEvent.type) {
                 case InputEvent.MOUSE_PRESSED:

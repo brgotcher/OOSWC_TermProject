@@ -8,7 +8,7 @@ import java.awt.geom.Point2D;
 
 public class Bullet extends GameFigure {
 
-    public static final int UNIT_MOVE = 5;
+    public static final int UNIT_MOVE = 8;
     public static final int BULLET_SIZE = 5;
 
 

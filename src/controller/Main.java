@@ -117,7 +117,7 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (counter % (100 - wave*2) == 0 && counter % (5*(100 - wave*2)) != 0) {
+            if (counter % (100 - wave*4) == 0 && counter % (5*(100 - wave*4)) != 0) {
                 gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, (rand.nextInt(MyWindow.HEIGHT - 140) + 70)));
                 for (int i = 0; i < gameData.enemyObject.size(); i++) {
                     if (gameData.enemyObject.get(i).getClass() == Cannon.class) {
@@ -126,12 +126,12 @@ public class Main {
                     };
                 }
             }
-            else if (counter % (5*(100 - wave * 2)) == 0) {
+            else if (counter % (5*(100 - wave * 4)) == 0) {
                 gameData.enemyObject.add(new Cannon(MyWindow.WIDTH - 50, (rand.nextInt(MyWindow.HEIGHT - 140) + 70)));
             }
             counter++;
 
-            if (counter % 2000 == 0) wave++;
+            if (counter % 1000 == 0) wave++;
 
             if (Base.hp < 1 | Guard.hp < 1) {
                 running = false;
@@ -159,13 +159,13 @@ public class Main {
                     //cb.state = cb.STATE_EXPLODING;
                     //cb.animStrategy = new CannonBallAnimExploding(cb);
                 } else {
-                    if (nme.getClass() == Runner.class) {
-                        Runner rnr = (Runner) nme;
-                        if (rnr.state.getClass() == RunnerStateRunning.class) {
-                            rnr.goNextState();
-                            guard.hp -=10;
-                        }
-                    }
+                    //if (nme.getClass() == Runner.class) {
+                    //    Runner rnr = (Runner) nme;
+                    //    if (rnr.state.getClass() == RunnerStateRunning.class) {
+                    //        rnr.goNextState();
+                    //        guard.hp -=10;
+                    //    }
+                    //}
                 }
             }
         }
@@ -186,13 +186,13 @@ public class Main {
                             //cb.animStrategy = new CannonBallAnimExploding(cb);
                         //}
                     } else {
-                        if (nme.getClass() == Runner.class) {
-                            Runner rnr = (Runner) nme;
-                            if (rnr.state.getClass() == RunnerStateRunning.class) {
-                                rnr.goNextState();
-                                friend.done = true;
-                            }
-                        }
+                        //if (nme.getClass() == Runner.class) {
+                        //    Runner rnr = (Runner) nme;
+                        //    if (rnr.state.getClass() == RunnerStateRunning.class) {
+                        //        rnr.goNextState();
+                        //        friend.done = true;
+                        //    }
+                        //}
                     }
                 }
             }
