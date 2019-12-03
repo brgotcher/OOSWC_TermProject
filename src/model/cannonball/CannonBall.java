@@ -1,10 +1,13 @@
 package model.cannonball;
 
+import controller.Main;
 import model.Base;
 import model.GameFigure;
+import model.Guard;
 
 import java.awt.*;
 
+import static controller.Main.gameData;
 import static controller.Main.wave;
 
 public class CannonBall extends GameFigure {
@@ -15,6 +18,7 @@ public class CannonBall extends GameFigure {
     public static final int STATE_SHOOTING = 0;
     public static final int STATE_EXPLODING = 1;
     public static final int STATE_DONE = 2;
+    Guard guard = (Guard) gameData.fixedObject.get(Main.INDEX_GUARD);
     public int state;
     public CannonBallAnimStrategy animStrategy;
 
@@ -38,7 +42,6 @@ public class CannonBall extends GameFigure {
     public void update() {
         updateState();
         animStrategy.animate();
-
 //        if (state == STATE_SHOOTING) {
 //            super.location.x -= (2.2 * wave + 3);
 //        } else if (state == STATE_EXPLODING) {
@@ -61,13 +64,26 @@ public class CannonBall extends GameFigure {
 //            }
 //        }
     }
-
     private void updateState() {
         if (state == STATE_SHOOTING) {
             if (super.location.x < 110) {
                 Base.hp -= 10;
                 state = STATE_EXPLODING;
                 animStrategy = new CannonBallAnimExploding(this);
+            } else if (this.collideWith(guard)) {
+                state = STATE_EXPLODING;
+                animStrategy = new CannonBallAnimExploding(this);
+                guard.hp -= 10;
+            }
+            else {
+                for (int n = 0; n < gameData.friendObject.size(); n++) {
+                    GameFigure blt = gameData.friendObject.get(n);
+                    if (this.collideWith(blt)) {
+                        state = STATE_EXPLODING;
+                        animStrategy = new CannonBallAnimExploding(this);
+                        blt.done = true;
+                    }
+                }
             }
         } else if (state == STATE_EXPLODING) {
             if (size >= MAX_CANNONBALL_SIZE) {

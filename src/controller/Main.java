@@ -154,10 +154,10 @@ public class Main {
                     guard.hp -= 10;
                     if (cnn.hp < 1) cnn.done = true;
                 } else if (nme.getClass() == CannonBall.class) {
-                    CannonBall cb = (CannonBall) nme;
-                    if (cb.state == cb.STATE_SHOOTING) guard.hp -= 10;
-                    cb.state = cb.STATE_EXPLODING;
-                    cb.animStrategy = new CannonBallAnimExploding(cb);
+                    //CannonBall cb = (CannonBall) nme;
+                    //if (cb.state == cb.STATE_SHOOTING) guard.hp -= 10;
+                    //cb.state = cb.STATE_EXPLODING;
+                    //cb.animStrategy = new CannonBallAnimExploding(cb);
                 } else {
                     if (nme.getClass() == Runner.class) {
                         Runner rnr = (Runner) nme;
@@ -174,22 +174,23 @@ public class Main {
             for (int n = 0; n < gameData.enemyObject.size(); n++) {
                 GameFigure nme = gameData.enemyObject.get(n);
                 if (friend.collideWith(nme)) {
-                    friend.done = true;
                     if (nme.getClass() == Cannon.class) {
                         Cannon cnn = (Cannon) nme;
                         cnn.hp--;
+                        friend.done = true;
                         if (cnn.hp < 1) cnn.done = true;
                     } else if (nme.getClass() == CannonBall.class) {
-                        CannonBall cb = (CannonBall) nme;
-                        if (cb.state == cb.STATE_SHOOTING) {
-                            cb.state = cb.STATE_EXPLODING;
-                            cb.animStrategy = new CannonBallAnimExploding(cb);
-                        }
+                        //CannonBall cb = (CannonBall) nme;
+                        //if (cb.state == cb.STATE_SHOOTING) {
+                            //cb.state = cb.STATE_EXPLODING;
+                            //cb.animStrategy = new CannonBallAnimExploding(cb);
+                        //}
                     } else {
                         if (nme.getClass() == Runner.class) {
                             Runner rnr = (Runner) nme;
                             if (rnr.state.getClass() == RunnerStateRunning.class) {
                                 rnr.goNextState();
+                                friend.done = true;
                             }
                         }
                     }
