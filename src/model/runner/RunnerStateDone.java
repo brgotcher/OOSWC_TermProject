@@ -14,8 +14,5 @@ public class RunnerStateDone implements RunnerState {
         context.setState(null);
     }
 
-    @Override
-    public void animate() {
 
-    }
 }

@@ -23,6 +23,7 @@ public class Runner extends GameFigure {
     Color color = Color.BLUE;
 
     public RunnerState state;
+    public RunnerAnimStrategy animStrategy;
 
 
     public Runner(int x, int y) {
@@ -32,6 +33,7 @@ public class Runner extends GameFigure {
         leftleg = new Line2D.Float(x-size/8, y+size/2, x-size/4, y + size);
         rightleg = new Line2D.Float(x+size/8, y+size/2, x+size/4, y + size);
         state = new RunnerStateRunning(this);
+        animStrategy = new RunnerAnimRunning(this);
     }
 
     public void goNextState() {
@@ -60,7 +62,7 @@ public class Runner extends GameFigure {
     public void update() {
 
         updateState();
-        state.animate();
+        animStrategy.animate();
 
 //        body.x = location.x - size / 4;
 //        body.y = location.y - size / 2;
@@ -88,6 +90,7 @@ public class Runner extends GameFigure {
 
     public void updateState() {
         if (state.getClass() == RunnerStateRunning.class && super.location.x <= 110) {
+            Base.hp -= 10;
             goNextState();
         }
         if (size > MAX_SIZE || size < MIN_SIZE) {

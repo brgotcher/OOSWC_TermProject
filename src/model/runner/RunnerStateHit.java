@@ -12,13 +12,14 @@ public class RunnerStateHit implements RunnerState {
 
     @Override
     public void goNext(Runner context) {
+        context.done = true;
         context.setState(new RunnerStateDone(context));
     }
 
-    @Override
-    public void animate() {
-        context.color = Color.RED;
-        if (context.location.x >= 115) context.size--;
-        else context.size++;
-    }
+//    @Override
+//    public void animate() {
+//        context.color = Color.RED;
+//        if (context.location.x >= 115) context.size--;
+//        else context.size++;
+//    }
 }

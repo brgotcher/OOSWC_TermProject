@@ -90,7 +90,7 @@ public class Main {
         gameData.fixedObject.add(new Guard(x, y));
         gameData.fixedObject.add(new StatDisplay(0,0));
         // place runner in random y location on far right
-        gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
+        gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, (rand.nextInt(MyWindow.HEIGHT - 140) + 70)));
     }
 
     static void gameLoop() {
@@ -118,7 +118,7 @@ public class Main {
                 e.printStackTrace();
             }
             if (counter % (100 - wave*2) == 0 && counter % (5*(100 - wave*2)) != 0) {
-                gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, rand.nextInt(MyWindow.HEIGHT - 50)));
+                gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, (rand.nextInt(MyWindow.HEIGHT - 140) + 70)));
                 for (int i = 0; i < gameData.enemyObject.size(); i++) {
                     if (gameData.enemyObject.get(i).getClass() == Cannon.class) {
                         Cannon en = (Cannon) gameData.enemyObject.get(i);
@@ -127,7 +127,7 @@ public class Main {
                 }
             }
             else if (counter % (5*(100 - wave * 2)) == 0) {
-                gameData.enemyObject.add(new Cannon(MyWindow.WIDTH - 50, rand.nextInt(MyWindow.HEIGHT - 50)));
+                gameData.enemyObject.add(new Cannon(MyWindow.WIDTH - 50, (rand.nextInt(MyWindow.HEIGHT - 140) + 70)));
             }
             counter++;
 
