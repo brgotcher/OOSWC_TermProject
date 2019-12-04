@@ -13,6 +13,4 @@ public class RunnerStateDone implements RunnerState {
     public void goNext(Runner context) {
         context.setState(null);
     }
-
-
 }

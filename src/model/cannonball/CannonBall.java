@@ -42,38 +42,18 @@ public class CannonBall extends GameFigure {
     public void update() {
         updateState();
         animStrategy.animate();
-//        if (state == STATE_SHOOTING) {
-//            super.location.x -= (2.2 * wave + 3);
-//        } else if (state == STATE_EXPLODING) {
-//            color = Color.RED;
-//            size++;
-//        } else {
-//            Base.hp -= 10;
-//
-//        }
-
-//        if (super.location.x >= 110) {
-//            super.location.x -= (2.2 * wave + 3);
-//        } else {
-//            color = Color.RED;
-//            if (size < 20) {
-//                size++;
-//            } else {
-//                Base.hp -= 10;
-//                super.done = true;
-//            }
-//        }
     }
+
     private void updateState() {
         if (state == STATE_SHOOTING) {
             if (super.location.x < 110) {
-                Base.hp -= 10;
+                Base.hp -= ((wave*2) + 10);
                 state = STATE_EXPLODING;
                 animStrategy = new CannonBallAnimExploding(this);
             } else if (this.collideWith(guard)) {
                 state = STATE_EXPLODING;
                 animStrategy = new CannonBallAnimExploding(this);
-                guard.hp -= 10;
+                guard.hp -= ((wave*2) + 10);
             }
             else {
                 for (int n = 0; n < gameData.friendObject.size(); n++) {

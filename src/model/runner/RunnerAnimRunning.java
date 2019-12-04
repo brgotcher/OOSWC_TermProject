@@ -32,7 +32,7 @@ public class RunnerAnimRunning implements RunnerAnimStrategy {
         context.rightleg.y2 = context.location.y + context.size;
 
         if (context.location.x >= 110) {
-            context.location.x -= (2.2 * wave + 3);
+            context.location.x -= (2.5 * wave + 3);
         }
 
     }

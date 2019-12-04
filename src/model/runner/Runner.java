@@ -17,8 +17,6 @@ public class Runner extends GameFigure {
     public int size = 20;
     public final int MAX_SIZE = 40;
     public final int MIN_SIZE = 8;
-    public int height;
-    public int width;
     public Ellipse2D.Float body;
     public Ellipse2D.Float head;
     public Line2D.Float leftleg;
@@ -67,38 +65,15 @@ public class Runner extends GameFigure {
 
         updateState();
         animStrategy.animate();
-
-//        body.x = location.x - size / 4;
-//        body.y = location.y - size / 2;
-//
-//        head.x = location.x - size / 4;
-//        head.y = location.y - size;
-//
-//        leftleg.x1 = location.x - size/8;
-//        leftleg.x2 = location.x - size/4;
-//        leftleg.y1 = location.y + size/2;
-//        leftleg.y2 = location.y + size;
-//
-//        rightleg.x1 = location.x + size/8;
-//        rightleg.x2 = location.x + size/4;
-//        rightleg.y1 = location.y + size/2;
-//        rightleg.y2 = location.y + size;
-
-//        if (location.x >= 110) {
-//            location.x -= (2 * wave + 3);
-//        } else {
-//            Base.hp -= 10;
-//            super.done = true;
-//        }
     }
 
     public void updateState() {
         if (state.getClass() == RunnerStateRunning.class) {
             if (super.location.x <= 110) {
-                Base.hp -= 10;
+                Base.hp -= ((wave*2) + 10);
                 goNextState();
             } else if (this.collideWith(guard)) {
-                guard.hp -= 10;
+                guard.hp -= ((wave*2) + 10);
                 goNextState();
             } else {
                 for (int n = 0; n < gameData.friendObject.size(); n++) {

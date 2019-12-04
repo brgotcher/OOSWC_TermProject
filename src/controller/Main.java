@@ -63,23 +63,6 @@ public class Main {
         }
     }
 
-//    public static void highScores() {
-//        gameData.clear();
-//        Font font = new Font("serif", Font.BOLD | Font.ITALIC, 50);
-//        HighScores.getScores();
-//        gameData.friendObject.add(new HighScores(HighScores.scores, 300, 50, Color.GREEN, font));
-//        win.buttonPanel.revalidate();
-//        win.buttonPanel.repaint();
-//        while (!run) {
-//            Main.win.canvas.render();
-//            System.out.println("test");
-//            try {
-//                Thread.sleep(500);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
     static void initGame() {
         gameData.clear();
@@ -117,7 +100,7 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (counter % (100 - wave*4) == 0 && counter % (5*(100 - wave*4)) != 0) {
+            if (counter % (100 - wave*6) == 0 && counter % (5*(100 - wave*6)) != 0) {
                 gameData.enemyObject.add(new Runner(MyWindow.WIDTH-50, (rand.nextInt(MyWindow.HEIGHT - 140) + 70)));
                 for (int i = 0; i < gameData.enemyObject.size(); i++) {
                     if (gameData.enemyObject.get(i).getClass() == Cannon.class) {
@@ -126,7 +109,7 @@ public class Main {
                     };
                 }
             }
-            else if (counter % (5*(100 - wave * 4)) == 0) {
+            else if (counter % (5*(100 - wave * 6)) == 0) {
                 gameData.enemyObject.add(new Cannon(MyWindow.WIDTH - 50, (rand.nextInt(MyWindow.HEIGHT - 140) + 70)));
             }
             counter++;
@@ -153,19 +136,6 @@ public class Main {
                     cnn.hp--;
                     guard.hp -= 10;
                     if (cnn.hp < 1) cnn.done = true;
-                } else if (nme.getClass() == CannonBall.class) {
-                    //CannonBall cb = (CannonBall) nme;
-                    //if (cb.state == cb.STATE_SHOOTING) guard.hp -= 10;
-                    //cb.state = cb.STATE_EXPLODING;
-                    //cb.animStrategy = new CannonBallAnimExploding(cb);
-                } else {
-                    //if (nme.getClass() == Runner.class) {
-                    //    Runner rnr = (Runner) nme;
-                    //    if (rnr.state.getClass() == RunnerStateRunning.class) {
-                    //        rnr.goNextState();
-                    //        guard.hp -=10;
-                    //    }
-                    //}
                 }
             }
         }
@@ -179,20 +149,6 @@ public class Main {
                         cnn.hp--;
                         friend.done = true;
                         if (cnn.hp < 1) cnn.done = true;
-                    } else if (nme.getClass() == CannonBall.class) {
-                        //CannonBall cb = (CannonBall) nme;
-                        //if (cb.state == cb.STATE_SHOOTING) {
-                            //cb.state = cb.STATE_EXPLODING;
-                            //cb.animStrategy = new CannonBallAnimExploding(cb);
-                        //}
-                    } else {
-                        //if (nme.getClass() == Runner.class) {
-                        //    Runner rnr = (Runner) nme;
-                        //    if (rnr.state.getClass() == RunnerStateRunning.class) {
-                        //        rnr.goNextState();
-                        //        friend.done = true;
-                        //    }
-                        //}
                     }
                 }
             }

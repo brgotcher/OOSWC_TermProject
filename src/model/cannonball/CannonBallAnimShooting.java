@@ -11,7 +11,7 @@ public class CannonBallAnimShooting implements CannonBallAnimStrategy {
     }
     @Override
     public void animate() {
-        context.location.x -= (2.2 * wave + 3);
+        context.location.x -= (2.5 * wave + 3);
     }
 
 }
